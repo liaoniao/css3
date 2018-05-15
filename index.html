@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .btb-wrap{    /* 盒子居中 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .btn{         /* 重置按钮样式 */
+            position: relative;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 2rem 0;
+            font: 20px/1.2 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b体,sans-serif;
+            font-weight: bold;
+            color: #505050;
+            border: none;
+            background: none;
+            outline: none;
+            overflow: hidden;
+        }               
+        .btn::after{      /* 利用伪类的水平变形（scaleX）实现底部动画效果，水平缩放初始值为0 */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border: 2px solid #0078b3;
+            -moz-transform: scaleX(0);     /*  兼容火狐浏览器 */
+            -webkit-transform: scaleX(0);  /*  兼容Chrome，safiri */
+            -ms-transform: scaleX(0);      /* 兼容IE */
+            transform: scaleX(0);
+        }
+        .btn,.btn::after{        /* 添加transition属性监听样式的改变 */
+            -moz-transition: color 1.5s,transform 1s;
+            -webkit-transition: color 1.5s,transform 1s;
+            -ms-transition: color 1.5s,transform 1s;
+            transition: color 1.5s,transform 1s;
+            -moz-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            -ms-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        /* 鼠标滑过改变样式 */
+        .btn:hover{    /* 按钮文字颜色改变 */
+            color: #0078b3;
+        }
+        .btn:hover::after{         /* 让伪元素恢复至原本宽度 */
+            -moz-transform: scaleX(1);
+            -webkit-transform: scaleX(1);
+            -ms-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="btb-wrap">
+        <button class="btn">
+            鼠标经过有特效哦
+        </button>
+    </div>
+</body>
+</html>
